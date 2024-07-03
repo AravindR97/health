@@ -47,6 +47,12 @@ class Patient(Document):
 		self.reload()
 
 	def on_update(self):
+
+		if not self.user_id and self.email and self.invite_user:
+			self.create_website_user()
+
+		self.set_contact()
+
 		if frappe.db.get_single_value("Healthcare Settings", "link_customer_to_patient"):
 			if self.customer:
 				if self.flags.existing_customer or frappe.db.exists(
@@ -59,13 +65,10 @@ class Patient(Document):
 			else:
 				create_customer(self)
 
-		self.set_contact()  # add or update contact
+		self.reload()
 
 		if self.flags.is_new_doc and self.get("address_line1"):
 			make_address(self)
-
-		if not self.user_id and self.email and self.invite_user:
-			self.create_website_user()
 
 	def load_dashboard_info(self):
 		if self.customer:
@@ -201,9 +204,7 @@ class Patient(Document):
 				# customer contact exists, link patient
 				contact = get_default_contact("Customer", self.customer)
 
-			if contact:
-				self.update_contact(contact)
-			else:
+			if not contact:
 				self.reload()
 				if self.email or self.mobile or self.phone:
 					contact = frappe.get_doc(
