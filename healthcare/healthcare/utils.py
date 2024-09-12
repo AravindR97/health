@@ -356,7 +356,7 @@ def get_inpatient_services_to_invoice(patient, company):
 			frappe.qb.from_(ip_occupancy)
 			.join(ip_record)
 			.on(ip_occupancy.parent == ip_record.name)
-			.select(ip_occupancy.star)
+			.select(ip_occupancy.star, ip_record.insurance_coverage)
 			.where(
 				(ip_record.patient == patient.name)
 				& (ip_record.company == company)

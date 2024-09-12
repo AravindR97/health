@@ -35,6 +35,7 @@
   "primary_practitioner",
   "secondary_practitioner",
   "admission_instruction",
+  "insurance_coverage",
   "encounter_details_section",
   "chief_complaint",
   "column_break_29",
@@ -510,6 +511,12 @@
    "fieldtype": "Tab Break",
    "label": "Connections",
    "show_dashboard": 1
+  },
+  {
+  "fieldname": "insurance_coverage",
+   "fieldtype": "Link",
+   "label": "Insurance Coverage",
+   "options": "Patient Insurance Coverage"
   }
  ],
  "index_web_pages_for_search": 1,
