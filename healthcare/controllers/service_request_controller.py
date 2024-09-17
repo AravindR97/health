@@ -56,7 +56,6 @@ class ServiceRequestController(Document):
 		if coverage and coverage.get('coverage'):
 			self.db_set({'insurance_coverage': coverage.get('coverage'), 'coverage_status': coverage.get('coverage_status')})
 
-
 @frappe.whitelist()
 def set_request_status(doctype, request, status):
 	frappe.db.set_value(doctype, request, 'status', status)
