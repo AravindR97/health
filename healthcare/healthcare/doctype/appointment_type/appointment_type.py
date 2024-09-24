@@ -65,6 +65,36 @@ def get_billing_details(appointment_type, docname=None):
 		details = get_details()
 	return details
 
+@frappe.whitelist()
+def get_service_item_based_on_department(appointment_type, department):
+	item_list = frappe.db.get_value(
+		"Appointment Type Service Item",
+		filters={"medical_department": department, "parent": appointment_type},
+		fieldname=[
+			"op_consulting_charge_item",
+			"inpatient_visit_charge_item",
+			"op_consulting_charge",
+			"inpatient_visit_charge",
+		],
+		as_dict=1,
+	)
+
+	# if department wise items are not set up
+	# use the generic items
+	if not item_list:
+		item_list = frappe.db.get_value(
+			"Appointment Type Service Item",
+			filters={"parent": appointment_type},
+			fieldname=[
+				"op_consulting_charge_item",
+				"inpatient_visit_charge_item",
+				"op_consulting_charge",
+				"inpatient_visit_charge",
+			],
+			as_dict=1,
+		)
+
+	return item_list
 
 def make_item_price(price_list, item, item_price):
 	frappe.get_doc(

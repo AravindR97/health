@@ -24,7 +24,7 @@ from healthcare.healthcare.doctype.healthcare_settings.healthcare_settings impor
 	get_income_account,
 	get_receivable_account,
 )
-from healthcare.healthcare.utils import get_appointment_billing_item_and_rate
+from healthcare.healthcare.utils import get_appointment_billing_item_and_rate, get_service_item_and_practitioner_charge
 
 from healthcare.healthcare.doctype.patient_insurance_coverage.patient_insurance_coverage import make_insurance_coverage
 
@@ -63,7 +63,7 @@ class PatientAppointment(Document):
 		self.insert_calendar_event()
 
 		if self.insurance_policy and self.appointment_type and not check_fee_validity(self):
-				if frappe.db.get_single_value('Healthcare Settings', 'automate_appointment_invoicing'):
+				if frappe.db.get_single_value('Healthcare Settings', 'show_payment_popup'):
 					#TODO: apply insurance coverage
 					frappe.msgprint(_('Insurance Coverage not created!<br>Not supported as <b>Automate Appointment Invoicing</b> enabled'),
 						alert=True, indicator='warning')
