@@ -143,6 +143,14 @@ frappe.ui.form.on('Patient Encounter', {
 			};
 		});
 
+		frm.set_query('insurance_policy', function() {
+			return {
+				filters: {
+					'patient': frm.doc.patient
+				}
+			};
+		});
+
 		frm.set_query("code_value", "codification_table", function(doc, cdt, cdn) {
 			let row = frappe.get_doc(cdt, cdn);
 			if (row.code_system) {
