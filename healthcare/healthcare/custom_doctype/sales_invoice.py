@@ -1,5 +1,6 @@
 import frappe
 
+from frappe.utils import flt
 from erpnext.accounts.doctype.sales_invoice.sales_invoice import SalesInvoice
 
 
