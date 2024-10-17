@@ -9,7 +9,7 @@
  "engine": "InnoDB",
  "field_order": [
   "lab_test_name",
-  "department",
+  "medical_department",
   "column_break_3",
   "disabled",
   "nursing_checklist_template",
@@ -104,15 +104,6 @@
    "read_only_depends_on": "eval:doc.link_existing_item",
    "reqd": 1,
    "search_index": 1
-  },
-  {
-   "fieldname": "department",
-   "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "in_standard_filter": 1,
-   "label": "Department",
-   "options": "Medical Department",
-   "reqd": 1
   },
   {
    "fieldname": "column_break_3",
@@ -408,10 +399,19 @@
   {
    "fieldname": "column_break_buub",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "medical_department",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "in_standard_filter": 1,
+   "label": "Department",
+   "options": "Medical Department",
+   "reqd": 1
   }
  ],
  "links": [],
- "modified": "2023-11-03 15:28:04.801812",
+ "modified": "2024-10-17 10:49:36.660528",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Lab Test Template",
