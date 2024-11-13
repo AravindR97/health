@@ -13,6 +13,8 @@
   "naming_series",
   "observation_template",
   "observation_category",
+  "service_unit_type",
+  "service_unit",
   "column_break_7xu5",
   "company",
   "posting_date",
@@ -564,12 +566,26 @@
    "fieldtype": "Check",
    "label": "Invoiced",
    "read_only": 1
+  },
+  {
+   "fetch_from": "observation_template.service_unit",
+   "fieldname": "service_unit_type",
+   "fieldtype": "Link",
+   "label": "Service Unit Type",
+   "options": "Healthcare Service Unit Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "service_unit",
+   "fieldtype": "Link",
+   "label": "Service Unit",
+   "options": "Healthcare Service Unit"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-25 06:00:59.016090",
+ "modified": "2024-11-12 12:22:51.282600",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Observation",

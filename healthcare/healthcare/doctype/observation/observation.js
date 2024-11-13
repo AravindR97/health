@@ -25,6 +25,17 @@ frappe.ui.form.on("Observation", {
 	observation_template: function(frm) {
 		get_medical_codes(frm);
 	},
+
+	refresh: function(frm) {
+		frm.set_query('service_unit', () => {
+			return {
+				filters: {
+					service_unit_type: frm.doc.service_unit_type
+				}
+			}
+		}
+		)
+	}
 });
 
 var get_medical_codes = function(frm) {
